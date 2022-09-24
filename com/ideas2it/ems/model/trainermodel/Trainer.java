@@ -1,12 +1,14 @@
-package com.ideas2it.ems.model.trainer;
+package com.ideas2it.ems.model.trainermodel;
 
 import java.util.List;
+
+import com.ideas2it.ems.model.traineemodel.Trainee;
 
 public class Trainer {
 
     private int id;
     private String name;
-    private int experience;
+    private float experience;
     private String emailId;
     private long phoneNumber;
     private String Designation;
@@ -28,11 +30,11 @@ public class Trainer {
        return name;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(float experience) {
         this.experience = experience;
     }
 
-    public int getExperience() {
+    public float getExperience() {
        return experience;
     }
 

@@ -3,6 +3,10 @@ package com.ideas2it.ems.service.trainerservice;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ideas2it.ems.model.trainermodel.Trainer;
+import com.ideas2it.ems.dao.trainerdao.TrainerDAO;
+import com.ideas2it.ems.exception.UserNotFoundException;
+
 public class TrainerService {
 
     TrainerDAO trainerDAO = new TrainerDAO();
@@ -16,7 +20,7 @@ public class TrainerService {
     }
 
     public boolean isTrainerEmpty() {
-        return trainerDAO.trainerList.isEmpty();   
+        return trainerDAO.getTrainer().isEmpty();   
     }
 
     public boolean checkTrainerById (Integer id) throws UserNotFoundException {
@@ -46,7 +50,7 @@ public class TrainerService {
         trainerDAO.updateTrainer(trainerIndex, trainer);
     }
 
-    public void updateExperience(Integer id, int experience) {
+    public void updateExperience(Integer id, float experience) {
         Integer trainerIndex = checkIndexById(id);
         Trainer trainer = getTrainer(trainerIndex);
         trainer.setExperience(experience);

@@ -1,9 +1,11 @@
-package com.ideas2it.ems.service.trainerdao;
+package com.ideas2it.ems.dao.trainerdao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class TrainerDAO {
+import com.ideas2it.ems.model.trainermodel.Trainer;
+
+public class TrainerDAO {
     static List<Trainer> trainerList = new ArrayList<Trainer>();
 
     public void addTrainer(Trainer trainer) {

@@ -3,7 +3,9 @@ package com.ideas2it.ems.dao.traineedao;
 import java.util.ArrayList;
 import java.util.List;
 
-class TraineeDAO {
+import com.ideas2it.ems.model.traineemodel.Trainee;
+
+public class TraineeDAO {
     static List<Trainee> traineeList = new ArrayList<Trainee>();
 
     public void addTrainee(Trainee trainee) {

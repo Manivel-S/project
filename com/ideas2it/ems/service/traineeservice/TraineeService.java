@@ -3,6 +3,10 @@ package com.ideas2it.ems.service.traineeservice;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ideas2it.ems.model.traineemodel.Trainee;
+import com.ideas2it.ems.dao.traineedao.TraineeDAO;
+import com.ideas2it.ems.exception.UserNotFoundException;
+
 public class TraineeService {
 
     TraineeDAO traineeDAO = new TraineeDAO();
@@ -15,13 +19,13 @@ public class TraineeService {
        return traineeDAO.getTrainee();
     }
    
-    public boolean isTraineeEmpty() {
-        return traineeDAO.traineeList.isEmpty();
+    public boolean isTraineeListEmpty() {
+        return traineeDAO.getTrainee().isEmpty();
     }
     
     public boolean checkTraineeById (Integer id) throws UserNotFoundException {
-        for(int index = 0; index < traineeDAO.traineeList.size(); index++) {
-            if(id.equals(traineeDAO.traineeList.get(index).getId())) {
+        for(int index = 0; index < traineeDAO.getTrainee().size(); index++) {
+            if(id.equals(traineeDAO.getTrainee().get(index).getId())) {
                 return true;
              }
          }
@@ -31,8 +35,8 @@ public class TraineeService {
     public int checkIndexById(Integer id) {
         int traineeIndex = 0;
 
-        for (int index = 0; index < traineeDAO.traineeList.size(); index++) {
-            if(id.equals(traineeDAO.traineeList.get(index).getId())) {
+        for (int index = 0; index < traineeDAO.getTrainee().size(); index++) {
+            if(id.equals(traineeDAO.getTrainee().get(index).getId())) {
                 traineeIndex = index;
             }
         }

@@ -1,4 +1,4 @@
-package com.ideas2it.ems.model.trainee;
+package com.ideas2it.ems.model.traineemodel;
 
 public class Trainee {
 

@@ -1,4 +1,4 @@
-package com.ideas2it.ems.controller.employeeController;
+package com.ideas2it.ems.controller;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -7,7 +7,15 @@ import java.util.Scanner;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-public class EmployeeController {
+import com.ideas2it.ems.service.trainerservice.TrainerService;
+import com.ideas2it.ems.service.traineeservice.TraineeService;
+import com.ideas2it.ems.model.trainermodel.Trainer;
+import com.ideas2it.ems.model.traineemodel.Trainee;
+import com.ideas2it.ems.exception.UserNotFoundException;
+import com.ideas2it.ems.util.ValidationUtil;
+
+class EmployeeController {
+    int trainerId = 1;
     int traineeId = 100;
     Scanner scanner = new Scanner(System.in);
     TrainerService trainerService = new TrainerService();
@@ -24,7 +32,7 @@ public class EmployeeController {
 
         do {
             try {
-                logger.info("select\n1.Trainer\n2.Trainee\n3.exit");
+                logger.info("\nselect\n1.Trainer\n2.Trainee\n3.exit");
                 choice = getChoice();
                 switch (choice) {
                     case 1:
@@ -90,7 +98,6 @@ public class EmployeeController {
     }
 
     public void createTrainer() {
-        int trainerId = 1;
         Trainer trainer = new Trainer();
         System.out.println("Trainer id  : " + trainerId);
         trainer.setId(trainerId++);
@@ -110,24 +117,16 @@ public class EmployeeController {
         List<Trainee> traineeAssignList = new ArrayList<Trainee>();
         do {
             try {
-                logger.info("\n1. assign exisist trainee"
+                logger.info("\n1. assign exist trainee"
                             .concat("\n2.create trainee and assign")
                             .concat("\n3--exit "));
                 choice = getChoice();
                 switch (choice ) {
                     case 1:
-                        if (traineeService.isTraineeEmpty()) {
+                        if (traineeService.isTraineeListEmpty()) {
                             logger.info("\nTrainee list is empty");
                         } else {
-                            logger.info("\nAvailable Trainee ID's");
-                            for (Trainee trainee : traineeService
-                                 .getDetails()) {
-                                logger.info(trainee.getId());
-                            }
-                            logger.info("\nChoose the trainee id to assign");
-                            traineeID = scanner.nextInt();
-                            traineeAssignList.add(traineeService
-                                                  .getTrainee(traineeID));
+                            traineeAssignList.add(assignExistTrainee());
                         }
                         break;
 
@@ -151,12 +150,24 @@ public class EmployeeController {
        return traineeAssignList;
     }
 
+    public  Trainee assignExistTrainee() { 
+        int traineeID;    
+        logger.info("Available Trainee ID's");
+
+        for (Trainee trainee : traineeService.getDetails()) {
+            logger.info(trainee.getId());
+        }
+        logger.info("\nChoose the trainee id to assign");
+        traineeID = scanner.nextInt();   
+        return traineeService.getTrainee(traineeID);
+    }
+
     public String getName() {
         String name;
         boolean isValid;
         do {
             logger.info("\nEnter employee name: ");
-            name = scanner.next();
+            name = scanner.nextLine();
             isValid = ValidationUtil.isValidPattern(ValidationUtil.namePattern,name);
             if (!(isValid)) {
                 logger.warn("\nInvlaid name");
@@ -165,19 +176,22 @@ public class EmployeeController {
         return name;
     }
 
-    public int getExperience() {
-        int experience= 0;
+    public float getExperience() {
+        float experience = 0;
         boolean isValid = false;
         do {
             try {
                 logger.info("\nEnter experience: ");
                 Scanner scanner = new Scanner(System.in);
-                experience = scanner.nextInt();
+                experience = Float.parseFloat(scanner.nextLine());
                 isValid = ValidationUtil
                           .isValidPattern(ValidationUtil.experiencePattern,
-                                          Integer.toString(experience));
+                                          Float.toString(experience));
             } catch (InputMismatchException error) {
-                logger.error("\n enter numbers only\n"); 
+                logger.error("\nEnter numbers only\n"); 
+                isValid = false;
+            } catch (NumberFormatException error) {
+                 logger.error("\nEnter numbers only\n"); 
                 isValid = false;
             }
         } while (!(isValid));
@@ -189,10 +203,10 @@ public class EmployeeController {
         boolean isValid = false;
         do {
             logger.info("\nEnter employee email ID: ");
-            emailId = scanner.next();
+            emailId = scanner.nextLine();
             isValid = ValidationUtil.isValidPattern(ValidationUtil.emailIdPattern, emailId);
             if (!(isValid)) {
-                logger.warn("\nInvalid id");
+                logger.warn("Invalid emailid");
             }
         } while (!(isValid));
         return emailId;
@@ -205,12 +219,15 @@ public class EmployeeController {
             try {
                 logger.info("\nEnter employee PhoneNumber: ");
                 Scanner scanner = new Scanner(System.in);
-                phoneNumber = scanner.nextLong();
+                phoneNumber = Long.parseLong(scanner.nextLine());
                 isValid = ValidationUtil
                           .isValidPattern(ValidationUtil.phoneNumberPattern,
                                           Long.toString(phoneNumber));
             } catch (InputMismatchException error) {
-                logger.error("\n enter numbers only\n");
+                logger.error("Enter numbers only\n");
+                isValid = false;   
+            } catch (NumberFormatException error) {
+                logger.error("Enter numbers only\n");
                 isValid = false;   
             }
             if (!(isValid)) {
@@ -225,11 +242,11 @@ public class EmployeeController {
         boolean isValid;
         do {
             logger.info("\nEnter employee Designation: ");
-            designation = scanner.next();
+            designation = scanner.nextLine();
             isValid = ValidationUtil.isValidPattern(ValidationUtil.designationPattern,
                                                      designation);
             if (!(isValid)) {
-                logger.warn("\nInvalid designation");
+                logger.warn("Invalid designation");
             }
         } while (!(isValid));
         return designation;
@@ -397,7 +414,7 @@ public class EmployeeController {
 
     public void readTrainee() {
 
-        if (traineeService.isTraineeEmpty()) {
+        if (traineeService.isTraineeListEmpty()) {
             logger.info("TraineeList does not exist");
         } else {
             List <Trainee> traineeList = traineeService.getDetails();
@@ -493,9 +510,12 @@ public class EmployeeController {
             try {
                 Scanner scanner = new Scanner(System.in);
                 logger.info("\nEnter your choice: ");
-                choice = scanner.nextInt();
+                choice = Integer.parseInt(scanner.nextLine());
                 flag = 0;
             } catch (InputMismatchException error) {
+                logger.error("\nEnter numbers only....!");
+                flag = 1;
+            } catch (NumberFormatException error) {
                 logger.error("\nEnter numbers only....!");
                 flag = 1;
             }
