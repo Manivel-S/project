@@ -1,5 +1,8 @@
 package com.ideas2it.ems.controller;
 
+import java.time.format.DateTimeParseException;
+import java.time.LocalDate; 
+import java.time.Period;  
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -102,6 +105,9 @@ class EmployeeController {
         System.out.println("Trainer id  : " + trainerId);
         trainer.setId(trainerId++);
         trainer.setName(getName());
+        LocalDate dob = getDOB();
+        trainer.setDOB(dob);
+        trainer.setAge(getAge(dob));
         trainer.setExperience(getExperience());
         trainer.setEmailId(getEmailId());
         trainer.setPhoneNumber(getPhoneNumber());
@@ -176,20 +182,55 @@ class EmployeeController {
         return name;
     }
 
+    public LocalDate getDOB() {
+        String dob;
+        boolean isValid;
+        LocalDate validDate = null;
+        do {
+            logger.info("Enter employee dob (YYYY-MM-DD): ");
+            dob = scanner.nextLine();
+            try {
+                  validDate = LocalDate.parse(dob);
+                 if(isValidAge(validDate)) {
+                    isValid = true;
+                 } else {
+                    System.out.println("your not eligible ");
+                   isValid = false;
+                 }
+            } catch (DateTimeParseException e) {
+                logger.warn("invalid date ");
+                isValid = false;
+            }
+            
+        } while (!(isValid));
+        return validDate;
+    }
+
+    public boolean isValidAge(LocalDate validDate) {
+        LocalDate curDate = LocalDate.now();
+        if( Period.between(validDate, curDate).getYears()>18) {
+            return true;
+        } else {
+            return false;
+        }
+    }  
+
+    public int getAge(LocalDate validDate) {
+        LocalDate curDate = LocalDate.now();
+        int age = Period.between(validDate, curDate).getYears();
+        return age;
+   }
+
     public float getExperience() {
         float experience = 0;
         boolean isValid = false;
         do {
             try {
-                logger.info("\nEnter experience: ");
-                Scanner scanner = new Scanner(System.in);
+                logger.info("Enter experience: ");
                 experience = Float.parseFloat(scanner.nextLine());
                 isValid = ValidationUtil
                           .isValidPattern(ValidationUtil.experiencePattern,
                                           Float.toString(experience));
-            } catch (InputMismatchException error) {
-                logger.error("\nEnter numbers only\n"); 
-                isValid = false;
             } catch (NumberFormatException error) {
                  logger.error("\nEnter numbers only\n"); 
                 isValid = false;
@@ -202,7 +243,7 @@ class EmployeeController {
         String emailId;
         boolean isValid = false;
         do {
-            logger.info("\nEnter employee email ID: ");
+            logger.info("Enter employee email ID: ");
             emailId = scanner.nextLine();
             isValid = ValidationUtil.isValidPattern(ValidationUtil.emailIdPattern, emailId);
             if (!(isValid)) {
@@ -217,7 +258,7 @@ class EmployeeController {
         boolean isValid = false;
         do {
             try {
-                logger.info("\nEnter employee PhoneNumber: ");
+                logger.info("Enter employee PhoneNumber: ");
                 Scanner scanner = new Scanner(System.in);
                 phoneNumber = Long.parseLong(scanner.nextLine());
                 isValid = ValidationUtil
@@ -241,7 +282,7 @@ class EmployeeController {
         String designation;
         boolean isValid;
         do {
-            logger.info("\nEnter employee Designation: ");
+            logger.info("Enter employee Designation: ");
             designation = scanner.nextLine();
             isValid = ValidationUtil.isValidPattern(ValidationUtil.designationPattern,
                                                      designation);
@@ -259,11 +300,11 @@ class EmployeeController {
         } else {
             List<Trainer> trainerList = trainerService.getDetails();
             for (Trainer trainer : trainerList) {
-                logger.info(trainer.toString());
+                logger.info(trainer);
                 List<Trainee> traineeList = trainer.getTrainee();
                 if (!(traineeList.isEmpty())) {
                     for(Trainee trainee : traineeList) {
-                        logger.info(trainee);
+                        logger.info("\n" + trainee);
                     }
                 }
             }
@@ -279,8 +320,8 @@ class EmployeeController {
             if (trainerService.checkTrainerById(id)) {
                 do {
                     logger.info("\n1.Name\n2.Experience\n3.Email ID"
-                                .concat("\n4.PhoneNumber5.\nDesignation")
-                                .concat("\n0. --> go back"));
+                                .concat("\n4.PhoneNumber5\nDesignation")
+                                .concat("\n6.DOB\n0. --> go back"));
                     logger.info("\nWhich information you want to change ");
                     logger.info("\nPlease select the number");
                     choice = getChoice();
@@ -308,6 +349,11 @@ class EmployeeController {
                         case 5:
                             trainerService.updateDesignation(id, getDesignation());
                             logger.info("Updation completed...");
+                            break;
+
+                        case 6:
+                            trainerService.updateDOB(id, getDOB());
+                            System.out.println("Updation completed...");
                             break;
 
                         case 0:
@@ -406,6 +452,9 @@ class EmployeeController {
         System.out.println("Trainee id  : " + traineeId);
         trainee.setId(traineeId++);
         trainee.setName(getName());
+        LocalDate dob = getDOB();
+        trainee.setDOB(dob);
+        trainee.setAge(getAge(dob));
         trainee.setEmailId(getEmailId());
         trainee.setPhoneNumber(getPhoneNumber());
         trainee.setDesignation(getDesignation());
@@ -434,7 +483,8 @@ class EmployeeController {
                 do {
                     try {
                         logger.info("\n1.Name\n2.Mail ID\n3.PhoneNumber"
-                                    .concat("\n4.Designation\n0. --> go back"));
+                                    .concat("\n4.Designation\n5.DOB")
+                                    .concat("\n0. -->go back"));
                         logger.info("\nWhich information you want to change ");
                         logger.info("\nplease select the number");
 
@@ -458,6 +508,11 @@ class EmployeeController {
                             case 4:
                                 traineeService.updateDesignation(id, getDesignation());
                                 logger.info("Updation completed...");
+                                break;
+
+                            case 5:
+                                traineeService.updateDOB(id, getDOB());
+                                System.out.println("Updation completed...");
                                 break;
 
                             case 0:

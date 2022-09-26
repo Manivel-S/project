@@ -1,5 +1,6 @@
 package com.ideas2it.ems.service.trainerservice;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,13 @@ public class TrainerService {
         Integer trainerIndex = checkIndexById(id);
         Trainer trainer = getTrainer(trainerIndex);
         trainer.setName(name);
+        trainerDAO.updateTrainer(trainerIndex, trainer);
+    }
+
+    public void updateDOB(Integer id, LocalDate dob) {
+        Integer trainerIndex = checkIndexById(id);
+        Trainer trainer = getTrainer(trainerIndex);
+        trainer.setDOB(dob);
         trainerDAO.updateTrainer(trainerIndex, trainer);
     }
 

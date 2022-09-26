@@ -1,5 +1,6 @@
 package com.ideas2it.ems.service.traineeservice;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,13 @@ public class TraineeService {
         Integer traineeIndex = checkIndexById(id);
         Trainee trainee = getTrainee(traineeIndex);
         trainee.setName(name);
+        traineeDAO.updateTrainee(traineeIndex, trainee);
+    }
+
+    public void updateDOB(Integer id, LocalDate dob) {
+        Integer traineeIndex = checkIndexById(id);
+        Trainee trainee = getTrainee(traineeIndex);
+        trainee.setDOB(dob);
         traineeDAO.updateTrainee(traineeIndex, trainee);
     }
    

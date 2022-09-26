@@ -1,5 +1,6 @@
 package com.ideas2it.ems.model.trainermodel;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.ideas2it.ems.model.traineemodel.Trainee;
@@ -8,6 +9,8 @@ public class Trainer {
 
     private int id;
     private String name;
+    private int age;
+    private LocalDate dob;
     private float experience;
     private String emailId;
     private long phoneNumber;
@@ -20,7 +23,15 @@ public class Trainer {
 
     public List<Trainee> getTrainee() {
         return traineeList;
-    } 
+    }
+
+    public void setDOB(LocalDate dob) {
+        this.dob = dob;
+    }
+
+    public LocalDate getDOB() {
+       return dob;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -68,12 +79,22 @@ public class Trainer {
     
     public int getId() {
        return id;
-    }     
+    }
+
+    public void setAge(int age) {
+       this.age = age;
+    }
+    
+    public int getAge() {
+       return age;
+    }         
 
     public String toString() {
         StringBuilder collectData = new StringBuilder();
         collectData.append("\nTrainer id         : ").append(id)
                    .append("\nTrainer name       : ").append(name)
+                   .append("\nTrainer DOB        : ").append(dob)
+                   .append("\nTrainer Age         : ").append(age)
                    .append("\nTrainer experience : ").append(experience)
                    .append("\nTrainer EmailId    : ").append(emailId)
                    .append("\nTrainer Designation: ").append(Designation)
