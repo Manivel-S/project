@@ -1,4 +1,4 @@
-package com.ideas2it.ems.exception;
+package com.ideas2it.employeemanagement.exception;
 
 public class UserNotFoundException extends Exception {
 

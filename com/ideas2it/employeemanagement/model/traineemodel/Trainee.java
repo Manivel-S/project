@@ -1,4 +1,4 @@
-package com.ideas2it.ems.model.traineemodel;
+package com.ideas2it.employeemanagement.model.traineemodel;
 
 import java.time.LocalDate;
 
@@ -75,7 +75,7 @@ public class Trainee {
         collectData.append("\nTrainee id         : ").append(id)
                    .append("\nTrainee Name       : ").append(name)
                    .append("\nTrainee DOB        : ").append(dob)
-                   .append("\nTrainee Age         : ").append(age)
+                   .append("\nTrainee Age        : ").append(age)
                    .append("\nTrainee EmailId    : ").append(emailId)
                    .append("\nTrainee Designation: ").append(Designation)
                    .append("\nTrainee PhoneNumber: ").append(phoneNumber);

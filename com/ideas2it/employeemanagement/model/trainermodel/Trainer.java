@@ -1,9 +1,9 @@
-package com.ideas2it.ems.model.trainermodel;
+package com.ideas2it.employeemanagement.model.trainermodel;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import com.ideas2it.ems.model.traineemodel.Trainee;
+import com.ideas2it.employeemanagement.model.traineemodel.Trainee;
 
 public class Trainer {
 
@@ -94,7 +94,7 @@ public class Trainer {
         collectData.append("\nTrainer id         : ").append(id)
                    .append("\nTrainer name       : ").append(name)
                    .append("\nTrainer DOB        : ").append(dob)
-                   .append("\nTrainer Age         : ").append(age)
+                   .append("\nTrainer Age        : ").append(age)
                    .append("\nTrainer experience : ").append(experience)
                    .append("\nTrainer EmailId    : ").append(emailId)
                    .append("\nTrainer Designation: ").append(Designation)

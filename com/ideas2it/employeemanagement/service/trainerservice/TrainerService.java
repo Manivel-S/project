@@ -1,12 +1,13 @@
-package com.ideas2it.ems.service.trainerservice;
+package com.ideas2it.employeemanagement.service.trainerservice;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ideas2it.ems.model.trainermodel.Trainer;
-import com.ideas2it.ems.dao.trainerdao.TrainerDAO;
-import com.ideas2it.ems.exception.UserNotFoundException;
+import com.ideas2it.employeemanagement.model.trainermodel.Trainer;
+import com.ideas2it.employeemanagement.model.traineemodel.Trainee;
+import com.ideas2it.employeemanagement.dao.trainerdao.TrainerDAO;
+import com.ideas2it.employeemanagement.exception.UserNotFoundException;
 
 public class TrainerService {
 
@@ -20,7 +21,7 @@ public class TrainerService {
       return trainerDAO.getTrainer();
     }
 
-    public boolean isTrainerEmpty() {
+    public boolean isTrainerListEmpty() {
         return trainerDAO.getTrainer().isEmpty();   
     }
 
@@ -86,6 +87,13 @@ public class TrainerService {
         trainerDAO.updateTrainer(trainerIndex, trainer);
     }
 
+    public void updateTrainee(Integer id, List<Trainee> trainee) {
+        Integer trainerIndex = checkIndexById(id);
+        Trainer trainer = getTrainer(trainerIndex);
+        trainer.setTrainee(trainee);
+        trainerDAO.updateTrainer(trainerIndex, trainer);
+    }
+
     public String getId(Integer id) {
         Integer trainerIndex = checkIndexById(id);
         return trainerDAO.getTrainer().get(trainerIndex).toString();
@@ -99,5 +107,27 @@ public class TrainerService {
     public void  deleteId(Integer id) {
         int trainerIndex = checkIndexById(id);
         trainerDAO.deleteTrainer(trainerIndex);
+    }
+
+    public int alreadyExistPhoneNumber(long number){
+         int flag = 0;
+            for (Trainer trainer :  getDetails()) {
+                 Long phoneNumber = trainer.getPhoneNumber();
+                 if(number == phoneNumber) {
+                     flag=1;
+                }
+            }
+        return flag;
+    }
+
+    public int alreadyExistEmailId(String mailId){
+         int flag = 0;
+            for (Trainer trainer :  getDetails()) {
+                 String emailId =trainer.getEmailId();
+                 if(mailId.equals(emailId)) {
+                     flag=1;
+                }
+            }
+        return flag;
     }
 }

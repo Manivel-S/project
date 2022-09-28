@@ -1,9 +1,9 @@
-package com.ideas2it.ems.dao.traineedao;
+package com.ideas2it.employeemanagement.dao.traineedao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ideas2it.ems.model.traineemodel.Trainee;
+import com.ideas2it.employeemanagement.model.traineemodel.Trainee;
 
 public class TraineeDAO {
     static List<Trainee> traineeList = new ArrayList<Trainee>();

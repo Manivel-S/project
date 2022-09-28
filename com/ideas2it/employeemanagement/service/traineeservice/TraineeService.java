@@ -1,12 +1,12 @@
-package com.ideas2it.ems.service.traineeservice;
+package com.ideas2it.employeemanagement.service.traineeservice;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ideas2it.ems.model.traineemodel.Trainee;
-import com.ideas2it.ems.dao.traineedao.TraineeDAO;
-import com.ideas2it.ems.exception.UserNotFoundException;
+import com.ideas2it.employeemanagement.model.traineemodel.Trainee;
+import com.ideas2it.employeemanagement.dao.traineedao.TraineeDAO;
+import com.ideas2it.employeemanagement.exception.UserNotFoundException;
 
 public class TraineeService {
 
@@ -88,5 +88,27 @@ public class TraineeService {
     public void  deleteId(Integer id) {
         int traineeIndex = checkIndexById(id);
         traineeDAO.deleteTrainee(traineeIndex);
+    }
+
+    public int alreadyExistPhoneNumber(Long number){
+        int flag = 0;
+            for (Trainee trainee :  getDetails()) {
+                Long phoneNumber =trainee.getPhoneNumber();
+                if(number == phoneNumber) {
+                    flag=1;
+                }
+            }
+        return flag;
+    }
+
+    public int alreadyExistEmailId(String mailId){
+        int flag = 0;
+            for (Trainee trainee :  getDetails()) {
+                String emailId =trainee.getEmailId();
+                if(mailId.equals(emailId)) {
+                    flag=1;
+                }
+            }
+        return flag;
     }
 }
