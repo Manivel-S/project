@@ -21,9 +21,9 @@ test(
       await page.locator('[data-test="username"]').fill('standard_user');
     });
 
-    await test.step('click', async () => {
-      await page.locator('[data-test="password"]').click();
-    });
+//     await test.step('click', async () => {
+//       await page.locator('[data-test="password"]').click();
+//     });
 
     await test.step('fill', async () => {
       await page.locator('[data-test="password"]').fill('secret_sauce');
