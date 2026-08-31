@@ -25,13 +25,13 @@ test(
       await page.locator('[data-test="password"]').click();
     });
 
-//     await test.step('fill', async () => {
-//       await page.locator('[data-test="password"]').fill('secret_sauce');
-//     });
-
     await test.step('fill', async () => {
-      await page.locator('[data-test="passport"]').fill('secret_sauce');
+      await page.locator('[data-test="password"]').fill('secret_sauce');
     });
+
+//     await test.step('fill', async () => {
+//       await page.locator('[data-test=${password}]').fill('secret_sauce');
+//     });
 
     await test.step('click', async () => {
       await page.locator('[data-test="login-button"]').click();
