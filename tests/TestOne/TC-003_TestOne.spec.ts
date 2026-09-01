@@ -22,7 +22,7 @@ test(
 //     });
 
     await test.step('fill', async () => {
-      await page.locator('[data="username"]').fill('standard_user');
+      await page.locator('[data-test="username"]').selectOption('standard_user');
     });
 
     await test.step('click', async () => {
