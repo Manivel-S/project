@@ -22,7 +22,7 @@ test(
 //     });
 
     await test.step('fill', async () => {
-      await page.locator(`//div[@id='login_credentials']`).fill('standard_user');
+      await page.locator('[data="username"]').fill('standard_user');
     });
 
     await test.step('click', async () => {
@@ -32,10 +32,6 @@ test(
     await test.step('fill', async () => {
       await page.locator('[data-test="password"]').fill('secret_sauce');
     });
-
-//     await test.step('fill', async () => {
-//       await page.locator('[data-test=]').fill('secret_sauce');
-//     });
 
     await test.step('click', async () => {
       await page.locator('[data-test="login-button"]').click();
