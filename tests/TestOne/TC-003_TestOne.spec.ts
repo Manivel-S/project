@@ -17,8 +17,12 @@ test(
       await page.locator('[data-test="username"]').click();
     });
 
+//     await test.step('fill', async () => {
+//       await page.locator('[data-test="username"]').fill('standard_user');
+//     });
+
     await test.step('fill', async () => {
-      await page.locator('[data-test="username"]').fill('standard_user');
+      await page.locator(`//div[@id='login_credentials']`).fill('standard_user');
     });
 
     await test.step('click', async () => {
