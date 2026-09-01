@@ -30,7 +30,7 @@ test(
 //     });
 
     await test.step('fill', async () => {
-      await page.locator('[data-test=password]').fill('secret_sauce');
+      await page.locator('[data-test=]').fill('secret_sauce');
     });
 
     await test.step('click', async () => {
