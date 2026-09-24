@@ -22,7 +22,7 @@ test(
     });
 
     await test.step('#04 - click', async () => {
-      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-credentials"]').click();
+      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
     });
 
     await test.step('#05 - click', async () => {
@@ -30,10 +30,6 @@ test(
     });
 
     await test.step('#06 - click', async () => {
-      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
-    });
-
-    await test.step('#07 - click', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
