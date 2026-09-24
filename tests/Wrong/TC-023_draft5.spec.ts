@@ -21,10 +21,6 @@ test(
       await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-credentials"]').click();
     });
 
-    await test.step('#04 - click', async () => {
-      await page.getByRole("textbox", { name: "Username", exact: true }).click();
-    });
-
   }
 );
 
