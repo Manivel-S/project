@@ -26,26 +26,22 @@ test(
     });
 
     await test.step('#05 - click', async () => {
-      await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
-    });
-
-    await test.step('#06 - click', async () => {
       await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
     });
 
-    await test.step('#07 - click', async () => {
+    await test.step('#06 - click', async () => {
       await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
     });
 
-    await test.step('#08 - click', async () => {
+    await test.step('#07 - click', async () => {
       await page.getByRole("textbox", { name: "Password", exact: true }).click();
     });
 
-    await test.step('#09 - click', async () => {
+    await test.step('#08 - click', async () => {
       await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
     });
 
-    await test.step('#10 - click', async () => {
+    await test.step('#09 - click', async () => {
       await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
     });
 
