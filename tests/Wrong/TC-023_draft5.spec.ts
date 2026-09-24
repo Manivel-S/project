@@ -25,10 +25,6 @@ test(
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
-    await test.step('#05 - click', async () => {
-      await page.getByRole("textbox", { name: "Password", exact: true }).click();
-    });
-
   }
 );
 
