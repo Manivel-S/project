@@ -22,11 +22,19 @@ test(
     });
 
     await test.step('#04 - click', async () => {
-      await page.locator('[data-test="login-password"]').click();
+      await page.locator('[data-test="login-password"]').nth(0).click();
     });
 
     await test.step('#05 - click', async () => {
       await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
+    });
+
+    await test.step('#06 - click', async () => {
+      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
+    });
+
+    await test.step('#07 - click', async () => {
+      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-credentials"]').click();
     });
 
   }
