@@ -29,6 +29,18 @@ test(
       await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-credentials"]').click();
     });
 
+    await test.step('#06 - click', async () => {
+      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
+    });
+
+    await test.step('#07 - click', async () => {
+      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-credentials"]').click();
+    });
+
+    await test.step('#08 - click', async () => {
+      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
+    });
+
   }
 );
 
