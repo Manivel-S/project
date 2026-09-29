@@ -41,10 +41,6 @@ test(
       await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
     });
 
-    await test.step('#09 - click', async () => {
-      await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
-    });
-
   }
 );
 
