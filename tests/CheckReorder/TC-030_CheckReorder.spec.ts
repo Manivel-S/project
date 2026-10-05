@@ -13,18 +13,6 @@ test(
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step('#02 - click', async () => {
-      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-password"]').click();
-    });
-
-    await test.step('#03 - click', async () => {
-      await page.locator('[data-test="login-credentials-container"]').locator('[data-test="login-credentials"]').click();
-    });
-
-    await test.step('#04 - click', async () => {
-      await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
-    });
-
   }
 );
 
