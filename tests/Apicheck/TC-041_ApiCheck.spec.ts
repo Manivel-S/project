@@ -8,6 +8,8 @@ test(
   },
   async ({ page, request }) => {
 
+    let data: any;
+
 
     await test.step('#01 - navigate', async () => {
       await page.goto('https://www.saucedemo.com/');
@@ -17,7 +19,9 @@ test(
       const apiResponse2 = await request.fetch('https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=1', {
         method: 'GET',
       });
+      const apiResponse2Body = await apiResponse2.json();
       expect(apiResponse2.status()).toBe(200);
+      data = apiResponse2Body[0].id;
     });
 
   }
