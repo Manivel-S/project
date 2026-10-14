@@ -8,7 +8,7 @@ test(
   },
   async ({ page }) => {
 
-    let heading: any;
+    let heading_2: any;
 
 
     await test.step('#01 - navigate', async () => {
@@ -44,7 +44,7 @@ test(
     });
 
     await test.step('#09 - get', async () => {
-      heading = await page.locator("page.getByRole('heading', { name: 'Password for all users:', level: 4 })").textContent();
+      heading_2 = await page.locator("page.getByRole('heading', { name: 'Password for all users:', level: 4 })").textContent();
     });
 
   }
