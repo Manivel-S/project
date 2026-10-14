@@ -60,7 +60,7 @@ test(
       await page.getByRole("textbox", { name: "Username", exact: true }).fill('standard_user');
     });
 
-    await test.step.skip('#13 - Disabled - click', async () => {
+    await test.step('#13 - click', async () => {
       await page.getByRole("textbox", { name: "Password", exact: true }).click();
     });
 
