@@ -73,6 +73,10 @@ test(
     });
     //End - Module - Login
 
+    await test.step('#16 - wait', async () => {
+      await page.waitForTimeout(2000);
+    });
+
   }
 );
 
