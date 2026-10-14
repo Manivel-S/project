@@ -47,33 +47,39 @@ test(
       heading2 = await page.locator("page.getByRole('heading', { name: 'Password for all users:', level: 4 })").textContent();
     });
     //Start - Module - Login
+    let heading: any;
+
 
     await test.step('#10 - navigate', async () => {
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step('#11 - click', async () => {
+    await test.step('#11 - get', async () => {
+      heading = await (new Function('page', 'locator', 'return (async () => {\n' + "return  \"test\"" + '\n})();'))(page, undefined);
+    });
+
+    await test.step('#12 - click', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
-    await test.step.skip('#12 - Disabled - fill', async () => {
+    await test.step.skip('#13 - Disabled - fill', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).fill('standard_user');
     });
 
-    await test.step('#13 - click', async () => {
+    await test.step('#14 - click', async () => {
       await page.getByRole("textbox", { name: "Password", exact: true }).click();
     });
 
-    await test.step.skip('#14 - Disabled - fill', async () => {
+    await test.step.skip('#15 - Disabled - fill', async () => {
       await page.getByRole("textbox", { name: "Password", exact: true }).fill('secret_sauce');
     });
 
-    await test.step('#15 - get', async () => {
+    await test.step('#16 - get', async () => {
       // TODO: GET step has no variables
     });
     //End - Module - Login
 
-    await test.step('#16 - wait', async () => {
+    await test.step('#17 - wait', async () => {
       await page.waitForTimeout(2000);
     });
 
