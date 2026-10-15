@@ -8,8 +8,6 @@ test(
   },
   async ({ page }) => {
 
-    let heading2: any;
-
 
     await test.step('#01 - navigate', async () => {
       await page.goto('https://www.saucedemo.com/');
@@ -41,28 +39,6 @@ test(
 
     await test.step('#08 - click', async () => {
       await page.getByRole("button", { name: "Logout", exact: true }).click();
-    });
-    //Start - Module - checkLogin
-
-    await test.step('#09 - navigate', async () => {
-      await page.goto('https://www.saucedemo.com/');
-    });
-
-    await test.step('#10 - click', async () => {
-      await page.getByRole("textbox", { name: "Username", exact: true }).click();
-    });
-
-    await test.step.skip('#11 - Disabled - click', async () => {
-      await page.getByRole("textbox", { name: "Password", exact: true }).click();
-    });
-
-    await test.step('#12 - click', async () => {
-      await page.getByRole("button", { name: "Login", exact: true }).click();
-    });
-    //End - Module - checkLogin
-
-    await test.step('#13 - get', async () => {
-      heading2 = await page.locator("page.getByRole('heading', { name: 'Password for all users:', level: 4 })").textContent();
     });
 
   }
