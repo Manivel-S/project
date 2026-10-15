@@ -50,7 +50,7 @@ test(
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step('#11 - changed', async () => {
+    await test.step('#11 - changed two', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
