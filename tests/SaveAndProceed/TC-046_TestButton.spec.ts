@@ -58,7 +58,7 @@ test(
       await page.getByRole("textbox", { name: "Password", exact: true }).click();
     });
 
-    await test.step.skip('#13 - Disabled - click', async () => {
+    await test.step('#13 - click', async () => {
       await page.getByRole("button", { name: "Login", exact: true }).click();
     });
     //End - Module - checkLogin
