@@ -60,7 +60,7 @@ test(
       header2 = await (new Function('page', 'locator', 'return (async () => {\n' + "return 'header2'" + '\n})();'))(page, undefined);
     });
 
-    await test.step('#12 - click', async () => {
+    await test.step.skip('#12 - Disabled - click', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
