@@ -44,6 +44,24 @@ test(
     await test.step('#09 - click', async () => {
       await page.getByRole("button", { name: "Logout", exact: true }).click();
     });
+    //Start - Module - checkLogin
+
+    await test.step('#10 - navigate', async () => {
+      await page.goto('https://www.saucedemo.com/');
+    });
+
+    await test.step('#11 - click', async () => {
+      await page.getByRole("textbox", { name: "Username", exact: true }).click();
+    });
+
+    await test.step.skip('#12 - Disabled - click', async () => {
+      await page.getByRole("textbox", { name: "Password", exact: true }).click();
+    });
+
+    await test.step('#13 - click', async () => {
+      await page.getByRole("button", { name: "Login", exact: true }).click();
+    });
+    //End - Module - checkLogin
 
   }
 );
