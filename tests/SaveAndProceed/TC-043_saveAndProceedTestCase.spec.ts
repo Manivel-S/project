@@ -48,6 +48,7 @@ test(
     });
     //Start - Module - Login
     let header: any;
+    let header2: any;
 
 
     await test.step('#10 - navigate', async () => {
@@ -56,6 +57,7 @@ test(
 
     await test.step('#11 - get', async () => {
       header = await (new Function('page', 'locator', 'return (async () => {\n' + "return ''header" + '\n})();'))(page, undefined);
+      header2 = await (new Function('page', 'locator', 'return (async () => {\n' + "return 'header2'" + '\n})();'))(page, undefined);
     });
 
     await test.step('#12 - click', async () => {
