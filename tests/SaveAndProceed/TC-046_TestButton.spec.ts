@@ -6,14 +6,14 @@ test(
     annotation: { type: 'QADENCE_TC_ID', description: 'TC-046' },
     tag: ['@QADENCE_TC_ID:TC-046'],
   },
-  async ({ page }) => {
+  async ({ page, request }) => {
 
 
     await test.step('#01 - navigate', async () => {
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step('#02 - click', async () => {
+    await test.step('#02 - test', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
@@ -62,6 +62,13 @@ test(
       await page.getByRole("button", { name: "Login", exact: true }).click();
     });
     //End - Module - checkLogin
+
+    await test.step('#14 - https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=1', async () => {
+      const apiResponse14 = await request.fetch('https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=1', {
+        method: 'GET',
+      });
+      expect(apiResponse14.status()).toBe(200);
+    });
 
   }
 );
