@@ -13,7 +13,7 @@ test(
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step('#02 - click', async () => {
+    await test.step('#02 - testone', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
