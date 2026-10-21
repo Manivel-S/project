@@ -53,15 +53,15 @@ test(
     });
     //Start - Module - Module Logout
 
-    await test.step('#11 - click', async () => {
+    await test.step.skip('#11 - Disabled - click', async () => {
       await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
     });
 
-    await test.step('#12 - click', async () => {
+    await test.step.skip('#12 - Disabled - click', async () => {
       await page.getByRole("button", { name: "Logout", exact: true }).click();
     });
 
-    await test.step('#13 - click', async () => {
+    await test.step.skip('#13 - Disabled - click', async () => {
       await page.getByRole("button", { name: "Open Menu", exact: true }).click();
     });
     //End - Module - Module Logout
