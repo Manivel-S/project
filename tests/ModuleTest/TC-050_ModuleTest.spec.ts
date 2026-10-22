@@ -41,7 +41,7 @@ test(
       await page.getByRole("button", { name: "Logout", exact: true }).click();
     });
 
-    await test.step.skip('#09 - Disabled - click', async () => {
+    await test.step('#09 - click', async () => {
       await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
     });
 
