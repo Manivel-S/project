@@ -44,6 +44,20 @@ test(
     await test.step('#09 - click', async () => {
       await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
     });
+    //Start - Module - Module Logout
+
+    await test.step('#10 - click', async () => {
+      await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
+    });
+
+    await test.step('#11 - click', async () => {
+      await page.getByRole("button", { name: "Logout", exact: true }).click();
+    });
+
+    await test.step('#12 - logout', async () => {
+      await page.getByRole("button", { name: "Open Menu", exact: true }).click();
+    });
+    //End - Module - Module Logout
 
   }
 );
