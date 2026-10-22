@@ -8,12 +8,13 @@ test(
   },
   async ({ page }) => {
 
+    //Start - Module - Module Login
 
     await test.step('#01 - navigate', async () => {
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step('#02 - click', async () => {
+    await test.step('#02 - test', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
@@ -32,22 +33,65 @@ test(
     await test.step('#06 - click', async () => {
       await page.getByRole("button", { name: "Login", exact: true }).click();
     });
+    //End - Module - Module Login
 
-    await test.step('#07 - click', async () => {
+    await test.step.skip('#07 - Disabled - navigate', async () => {
+      await page.goto('https://www.saucedemo.com/');
+    });
+
+    await test.step.skip('#08 - Disabled - click', async () => {
+      await page.getByRole("textbox", { name: "Username", exact: true }).click();
+    });
+
+    await test.step.skip('#09 - Disabled - fill', async () => {
+      await page.getByRole("textbox", { name: "Username", exact: true }).fill('standard_user');
+    });
+
+    await test.step.skip('#10 - Disabled - click', async () => {
+      await page.getByRole("textbox", { name: "Password", exact: true }).click();
+    });
+
+    await test.step.skip('#11 - Disabled - fill', async () => {
+      await page.getByRole("textbox", { name: "Password", exact: true }).fill('secret_sauce');
+    });
+
+    await test.step.skip('#12 - Disabled - click', async () => {
+      await page.getByRole("button", { name: "Login", exact: true }).click();
+    });
+
+    await test.step('#13 - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(0).click();
     });
 
-    await test.step('#08 - click', async () => {
+    await test.step('#14 - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(1).click();
     });
 
-    await test.step('#09 - click', async () => {
+    await test.step('#15 - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(2).click();
     });
 
-    await test.step('#10 - click', async () => {
+    await test.step('#16 - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(3).click();
     });
+    //Start - Module - clickModule
+
+    await test.step('#17 - click', async () => {
+      await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(0).click();
+    });
+
+    await test.step('#18 - click', async () => {
+      await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(1).click();
+    });
+
+    await test.step('#19 - click', async () => {
+      await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(2).click();
+    });
+
+    await test.step('#20 - click', async () => {
+      await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(3).click();
+    });
+    //End - Module - clickModule
 
   }
 );
