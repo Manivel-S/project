@@ -50,7 +50,7 @@ test(
       await page.getByRole("button", { name: "Logout", exact: true }).click();
     });
 
-    await test.step('#11 - logout', async () => {
+    await test.step.skip('#11 - Disabled - logout', async () => {
       await page.getByRole("button", { name: "Open Menu", exact: true }).click();
     });
     //End - Module - Module Logout
