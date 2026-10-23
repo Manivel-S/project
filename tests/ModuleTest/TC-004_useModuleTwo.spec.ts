@@ -34,16 +34,16 @@ test(
     });
     //Start - Module - logout module
 
-    await test.step('#07 - Click on the main section containing \'LoginAccepted usernames\' text', async () => {
+    await test.step('#07 - Click the Open Menu button', async () => {
+      await page.getByRole("button", { name: "Open Menu", exact: true }).click();
+    });
+
+    await test.step('#08 - Click on the main section containing \'LoginAccepted usernames\' text', async () => {
       await page.getByRole("main").filter({ hasText: "LoginAccepted usernames" }).click();
     });
 
-    await test.step('#08 - Click the Logout button', async () => {
+    await test.step('#09 - Click the Logout button', async () => {
       await page.getByRole("button", { name: "Logout", exact: true }).click();
-    });
-
-    await test.step('#09 - Click the Open Menu button', async () => {
-      await page.getByRole("button", { name: "Open Menu", exact: true }).click();
     });
     //End - Module - logout module
 
