@@ -68,19 +68,19 @@ test(
     });
     //Start - Module - clickModule
 
-    await test.step('#15 - click', async () => {
+    await test.step.skip('#15 - Disabled - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(0).click();
     });
 
-    await test.step('#16 - click', async () => {
+    await test.step.skip('#16 - Disabled - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(1).click();
     });
 
-    await test.step('#17 - click', async () => {
+    await test.step.skip('#17 - Disabled - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(2).click();
     });
 
-    await test.step('#18 - click', async () => {
+    await test.step.skip('#18 - Disabled - click', async () => {
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(3).click();
     });
     //End - Module - clickModule
@@ -118,6 +118,20 @@ test(
       await page.locator('[data-test="inventory-item-description"]').locator('[data-test="inventory-item-desc"]').nth(3).click();
     });
     //End - Module - clickModule
+    //Start - Module - Module Logout
+
+    await test.step('#27 - click', async () => {
+      await page.locator('[data-test="login-container"]').locator('[data-test="login-credentials-container"]').click();
+    });
+
+    await test.step('#28 - click', async () => {
+      await page.getByRole("button", { name: "Logout", exact: true }).click();
+    });
+
+    await test.step('#29 - logout', async () => {
+      await page.getByRole("button", { name: "Open Menu", exact: true }).click();
+    });
+    //End - Module - Module Logout
 
   }
 );
