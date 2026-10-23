@@ -35,36 +35,36 @@ test(
     });
     //End - Module - Module Login
 
-    await test.step('#07 - click', async () => {
+    await test.step.skip('#07 - Disabled - click', async () => {
       await page.getByRole("button", { name: "Open Menu", exact: true }).click();
     });
 
-    await test.step('#08 - click', async () => {
+    await test.step.skip('#08 - Disabled - click', async () => {
+      await page.getByRole("button", { name: "Login", exact: true }).click();
+    });
+
+    await test.step.skip('#09 - Disabled - click', async () => {
       await page.getByRole("button", { name: "Logout", exact: true }).click();
     });
 
-    await test.step.skip('#09 - Disabled - navigate', async () => {
+    await test.step.skip('#10 - Disabled - navigate', async () => {
       await page.goto('https://www.saucedemo.com/');
     });
 
-    await test.step.skip('#10 - Disabled - click', async () => {
+    await test.step.skip('#11 - Disabled - click', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).click();
     });
 
-    await test.step.skip('#11 - Disabled - fill', async () => {
+    await test.step.skip('#12 - Disabled - fill', async () => {
       await page.getByRole("textbox", { name: "Username", exact: true }).fill('standard_user');
     });
 
-    await test.step.skip('#12 - Disabled - click', async () => {
+    await test.step.skip('#13 - Disabled - click', async () => {
       await page.getByRole("textbox", { name: "Password", exact: true }).click();
     });
 
-    await test.step.skip('#13 - Disabled - fill', async () => {
+    await test.step.skip('#14 - Disabled - fill', async () => {
       await page.getByRole("textbox", { name: "Password", exact: true }).fill('secret_sauce');
-    });
-
-    await test.step('#14 - click', async () => {
-      await page.getByRole("button", { name: "Login", exact: true }).click();
     });
     //Start - Module - clickModule
 
